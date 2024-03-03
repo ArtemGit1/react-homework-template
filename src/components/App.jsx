@@ -6,8 +6,11 @@ const Container = styled.div`
 `;
 
 const NavgtionContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Змініть потрібний відступ між заголовком і кнопками */
 `;
 
 const Title = styled.h2`
@@ -16,17 +19,15 @@ const Title = styled.h2`
 
 const ButtonsContainer = styled.div`
     display: flex;
-    margin-top: 10px;
-    margin-left: auto;
 `;
 
 const CardContainer = styled.div`
-    margin-top: 40px;
+    margin-left: -55px;
 `;
 
 const Card = styled.li`
-    width: 270px;
-    height: 200px;
+    width: 237px;
+    height: 206px;
     background-color: green;
     border-radius: 15px;
 `;
@@ -35,10 +36,12 @@ const CardDiv = styled.div`
   
 `;
 const CardList = styled.ul`
-  display: flex;
-  gap: 10px;
-  list-style: none;
-  padding-top: 80px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 `;
 
 const TabButton = styled.button`
@@ -46,7 +49,7 @@ const TabButton = styled.button`
     color: ${props => props.isActive ? 'white' : 'black'};
     border: none;
     padding: 5px 10px;
-    margin-right: 10px; /* Змініть потрібний відступ між кнопками */
+    margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
     width: 84px;
@@ -70,11 +73,17 @@ export const App = () => {
                     <TabButton isActive={activeTab === 3} onClick={() => handleTabClick(3)}>Equipment</TabButton>
                 </ButtonsContainer>
             </NavgtionContainer>
-                <CardContainer>
-                    {activeTab === 1 && <CardList><Card><CardDiv></CardDiv></Card><Card><CardDiv></CardDiv></Card><Card><CardDiv></CardDiv></Card></CardList>}
-                    {activeTab === 2 && <p>Tab 2 Content</p>}
-                    {activeTab === 3 && <p>Tab 3 Content</p>}
-                </CardContainer>
+            <CardContainer>
+                {activeTab === 1 && (
+                    <CardList>
+                        {[...Array(10)].map((_, index) => (
+                            <Card key={index}><CardDiv></CardDiv></Card>
+                        ))}
+                    </CardList>
+                )}
+                {activeTab === 2 && <p>Tab 2 Content</p>}
+                {activeTab === 3 && <p>Tab 3 Content</p>}
+            </CardContainer>
         </Container>
     );
 };
